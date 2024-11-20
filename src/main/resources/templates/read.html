@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>이벤트 내용 읽기/수정/삭제(Read/Update/Delete)</title>
+</head>
+<body>
+<div class="wrap">
+    <h1>글 내용 읽기/수정/삭제(Read/Update/Delete)</h1>
+    <form th:action="@{/content/{id}(id=${event.id})}" th:method="post">
+        <div class="event_read">
+            <label for="title">이벤트 제목 : </label>
+            <input type="text" id="title" name="eventTitle" th:value="${event.eventTitle}"><br><br>
+            <label for="content">이벤트 내용 : </label>
+            <textarea id="content" name="eventContent" rows="5">[[${event.eventContent}]]</textarea><br>
+            <label for="writer">작성자 :</label>
+            <input type="text" id="writer" name="writer" th:value="${event.writer}"><br><br>
+            <label for="eventDate">이벤트 일시 :</label>
+            <input type="text" id="eventDate" name="eventDate" th:value="${event.eventDate}"><br>
+        </div>
+        <button type="submit">수정하기</button>
+        <button th:formaction="@{/content/delete/{id}(id=${event.id})}" type="submit">삭제하기</button>
+        <button type="button" th:onclick="|location.href='/'|">취소</button>
+    </form>
+</div>
+</body>
+</html>

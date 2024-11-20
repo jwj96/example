@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="wrap">
+    <h1>이벤트 게시판(EVENT)</h1>
+    <div class="writeBtn">
+        <button onclick="location.href='./content/write'">이벤트 작성하기</button>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>이벤트 제목</th>
+            <th>이벤트 일시</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>보기</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i: ${list}">
+            <td th:text="${i.id}"></td>
+            <td>
+                <a th:href="|@{/content/}${i.id}|">
+                    [[${i.eventTitle}]]
+                </a>
+            </td>
+            <td th:text="${i.eventDate}"></td>
+            <td th:text="${i.writer}"></td>
+            <td th:text="${i.date}"></td>
+            <td><button type="button" th:onclick="|location.href='@{/content/}'+${i.id}|">보기</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

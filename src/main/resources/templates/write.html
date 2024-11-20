@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>이벤트 작성하기(Write)</title>
+</head>
+<body>
+<div class="wrap">
+    <h1>글 작성하기(Write)</h1>
+    <form action="/content/write" method="post" class="formObj">
+        <div class="board_write">
+            <label for="title">이벤트 제목 : </label>
+            <input type="text" id="title" name="eventTitle" placeholder="제목을 입력하세요" ><br><br>
+            <label for="content">이벤트 내용 : </label>
+            <textarea id="content" name="eventContent" rows="5" placeholder="200자 이내로 글 내용을 입력하세요"></textarea><br>
+            <label for="writer">작성자 :</label>
+            <input type="text" id="writer" name="writer" placeholder="작성자를 입력하세요"><br><br>
+            <label for="eventDate">이벤트 일시 :</label>
+            <input type="text" id="eventDate" name="eventDate" placeholder="이벤트 일시를 입력하세요"><br>
+        </div>
+        <button type="submit" class="btn">등록</button>
+        <button type="button" th:onclick="|location.href='/'|">취소</button>
+    </form>
+</div>
+</body>
+
+<script layout:fragment="script" th:inline="javascript">
+    const btn=document.querySelector(".btn");
+    btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        const title=document.querySelector("#title").value;
+        const writer=document.querySelector("#writer").value;
+        const nickname=document.querySelector("#eventDate").value;
+        const contents=document.querySelector("#content").value;
+        if (title === '' || writer === '' || eventDate === '' || contents === '' ){
+            alert("비어있는 데이터가 있습니다.");
+        }else {
+            document.querySelector(".formObj").submit();
+        }
+
+    });
+</script>
+</html>
